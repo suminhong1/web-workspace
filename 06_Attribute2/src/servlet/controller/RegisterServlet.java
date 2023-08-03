@@ -1,8 +1,7 @@
-package servlet.header;
+package servlet.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,31 +9,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PrintHeaderServlet2
+ * Servlet implementation class RegisterServlet
  */
-public class PrintHeaderServlet2 extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		
-		
+		// 로직은 여기서 작성
+		/*
+		 * 1. 양방향 한글처리 2. 폼값 받아서 3. ViewServlet (view)한테 결과(이름, 나이, 주소) 출력
+		 */
+		// a링크로 ViewServlet 결과 확인하러 가기
+//		request.setCharacterEncoding("utf-8");
+//		response.setContentType("text/html;charset=utf-8");
+
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String addr = request.getParameter("addr");
+
 		PrintWriter out = response.getWriter();
-		out.println("<h2>여기는 doGet입니다.</h2>");
-		
-		// header 정보
-		Enumeration<String> en = request.getHeaderNames();
-		while(en.hasMoreElements()) {
-			String key = en.nextElement();
-			String value = request.getHeader(key);
-			out.println("<p>key : " + key + ", value : " + value + "</p>");
-			
-		}
+		out.println("<a href='view?name=" + name + "&age=" + age + "&addr=" + addr + "'>view로 이동</a>");
 		out.close();
 	}
 
