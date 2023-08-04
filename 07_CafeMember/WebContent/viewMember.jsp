@@ -24,6 +24,13 @@
 	List<MemberVO> list = (List) request.getAttribute("list");
 	%>
 	<div class="container">
+		<h2>회원 조회</h2>
+		<form action="search">
+			검색할 회원 이름을 입력해주세요. <br>
+			<input type="text" name="name">
+			<input type="submit" value="조회">
+		</form>
+		<hr>
 	<%if (name!=null) {%>
 		<h4><%=name%>님이 방금전 회원가입 하셨습니다..</h4>
 		<% } %>
