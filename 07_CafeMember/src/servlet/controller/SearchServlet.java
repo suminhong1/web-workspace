@@ -29,22 +29,17 @@ public class SearchServlet extends HttpServlet {
 			// 3. 멤버 정보 1개 바인딩
 			request.setAttribute("vo", vo); // 검색 결과를 request에 저장
 			// 4. 네비게이션 -> view.jsp
-			if(vo!=null) {
+			if (vo != null) {
 				request.getRequestDispatcher("view.jsp").forward(request, response); // 검색 결과 페이지로 포워딩
 			} else {
 				request.getRequestDispatcher("fail.jsp").forward(request, response);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			// 오류 처리 로직 추가
 		}
-		
-		
-		
 
-	
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

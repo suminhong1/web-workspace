@@ -18,11 +18,7 @@
 	crossorigin="anonymous" />
 </head>
 <body>
-	<% 
-	String name = request.getParameter("name");
-	//List<MemberVO> list = (List<MemberVO>) application.getAttribute("list");
-	List<MemberVO> list = (List) request.getAttribute("list");
-	%>
+	
 	<div class="container">
 		<h2>회원 조회</h2>
 		<form action="search">

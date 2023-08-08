@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServlet;
  * 요청을 수행한 후 응답할 정보를 ServletResponse 저장
  * */
 
-/**
- * Servlet implementation class GenericServlet
- */
 public class GenericServletTest extends GenericServlet {
 	private static final long serialVersionUID = 1L;
 	
