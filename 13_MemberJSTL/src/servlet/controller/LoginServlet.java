@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 import servlet.model.dao.MemberDAO;
 import servlet.model.vo.MemberDTO;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

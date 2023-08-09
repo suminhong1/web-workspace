@@ -10,12 +10,12 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${not empty sessionScope.dto }">
+		<c:when test="${!empty dto}">
 			<h1>로그인 정보</h1>
 			<ul>
-				<li>아이디 : ${sessionScope.dto.id}</li>
-				<li>이름 : ${sessionScope.dto.name}</li>
-				<li>주소 : ${sessionScope.dto.address}</li>
+				<li>아이디 : ${dto.id}</li>
+				<li>이름 : ${dto.name}</li>
+				<li>주소 : ${dto.address}</li>
 			</ul>
 			<a href="/index.jsp">첫 페이지로 이동</a>
 		</c:when>

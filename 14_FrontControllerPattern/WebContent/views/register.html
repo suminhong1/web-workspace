@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h1>회원가입</h1>
+		<form action="/front.do" method="post" name="form">
+			<input type="hidden" name="command" value="register">
+			<div>
+				<label for="id" name="id">아이디 : </label> <input type="text"
+					name="id" />
+			</div>
+			<br />
+			<div>
+				<label for="password" name="password">비밀번호 : </label> <input
+					type="password" name="password" />
+			</div>
+			<br />
+			<div>
+				<label for="name" name="name">이름 : </label> <input type="text"
+					name="name" />
+			</div>
+			<br />
+			<div>
+				<label for="address" name="address">주소 : </label> <input type="text"
+					name="address" />
+			</div>
+			<br /> <input type="submit" value="가입" />
+		</form>
+	</div>
+</body>
+</html>

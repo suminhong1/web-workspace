@@ -16,43 +16,45 @@ import servlet.model.vo.MemberDTO;
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 1. 폼값 가져온다.
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
-		
+
 		// 2. 객체 생성 - 폼 값 담기
 		MemberDTO dto = new MemberDTO();
 		dto.setId(id);
 		dto.setPassword(password);
 		dto.setName(name);
 		dto.setAddress(address);
-		
+
 		try {
 			// 3. DAO와 연결
 //			MemberDAO dao = new MemberDAO();
 			MemberDAO.getInstance().registerMember(dto);
-			
+
 			// 4. 데이터 바인딩 - session
 			HttpSession session = request.getSession();
 			session.setAttribute("dto", dto);
-			
+
 			// 5. 네비게이션
 			response.sendRedirect("AllMemberServlet");
-			
+
 		} catch (SQLException e) {
-			
+
 			System.out.println("회원가입 실패!");
 			response.sendRedirect("../index.jsp");
-			
+
 		}
-		
+
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
