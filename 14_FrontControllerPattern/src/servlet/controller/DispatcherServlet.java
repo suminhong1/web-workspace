@@ -125,9 +125,9 @@ public class DispatcherServlet extends HttpServlet {
 
 	protected String logout(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
-		
+
 		HttpSession session = request.getSession();
-		if(session.getAttribute("vo")!=null) {
+		if (session.getAttribute("vo") != null) {
 			session.invalidate();
 			return "views/logout.jsp";
 		}
