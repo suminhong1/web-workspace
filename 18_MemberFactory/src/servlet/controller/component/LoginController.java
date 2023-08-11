@@ -17,20 +17,16 @@ public class LoginController implements Controller {
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-
-		MemberVO vo = MemberDAO.getInstance().login(id, password);
-
-		if (vo != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("vo", vo);
-
-			String path = "views/login_result.jsp";
-			return new ModelAndView(path);
-
-		}
 		String path = "views/login_result.jsp";
-		return new ModelAndView(path);
+		
+		MemberVO vo = MemberDAO.getInstance().login(id, password);
+		HttpSession session = request.getSession();
+		
+		if(vo!=null) {
+			session.setAttribute("vo", vo);
+		}
+		
+		return new ModelAndView(path , true);
 
 	}
-
 }

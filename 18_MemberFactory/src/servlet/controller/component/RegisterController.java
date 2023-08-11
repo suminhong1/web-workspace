@@ -15,37 +15,23 @@ public class RegisterController implements Controller {
 
 	@Override
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 1. 폼값 가져온다.
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String path = "index.jsp";
-
-		// 2. 객체 생성 - 폼 값 담기
-		MemberVO vo = new MemberVO();
-		vo.setId(id);
-		vo.setPassword(password);
-		vo.setName(name);
-		vo.setAddress(address);
-
-		try {
-			// 3. DAO와 연결
-//					MemberDAO dao = new MemberDAO();
-			MemberDAO.getInstance().registerMember(vo);
-
-			// 4. 데이터 바인딩 - session
-			HttpSession session = request.getSession();
-			session.setAttribute("vo", vo);
-			return new ModelAndView(path);
-		} catch (SQLException e) {
-
-			
-		}
-		System.out.println("회원가입 실패!");
+		
+		MemberVO vo = new MemberVO(id, password, name, address);
+		
+		MemberDAO.getInstance().registerMember(vo);
+		
+		// 데이터 바인딩 - request, session, context
+		// setAttribute
+		// request <--- 범위가 가장 좁음
+		// session <--- 로그인 / 로그아웃
+		// context <--- 범위가 가장 넓음 거의 사용 X
+		
 		return new ModelAndView(path);
 
-
-	}
-
 }
+	}

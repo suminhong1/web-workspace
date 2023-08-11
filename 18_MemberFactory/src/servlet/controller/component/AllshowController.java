@@ -16,11 +16,9 @@ public class AllshowController implements Controller {
 	@Override
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String path = "views/allShow.jsp";
-		try {
-			ArrayList<MemberVO> list = MemberDAO.getInstance().showAllMember();
-			request.setAttribute("list", list);
-		} catch (SQLException e) {
-		}
+		ArrayList<MemberVO> list = MemberDAO.getInstance().showAllMember();
+		request.setAttribute("list", list);
+		
 		return new ModelAndView(path);
 	}
 

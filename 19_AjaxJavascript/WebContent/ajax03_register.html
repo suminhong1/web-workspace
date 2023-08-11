@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h1>회원가입</h1>
+		<form action="/idCheck.do" method="post" name="form">
+			<div>
+				<label for="id" name="id">아이디 : </label> <input type="text"
+					name="id" id="id" />
+				<button type="button" onclick="startRequest()">중복체크</button>
+				<span id="idCheckView"> </span>
+			</div>
+			<br />
+			<div>
+				<label for="password" name="password">비밀번호 : </label> <input
+					type="password" name="password" />
+			</div>
+			<br />
+			<div>
+				<label for="name" name="name">이름 : </label> <input type="text"
+					name="name" />
+			</div>
+			<br />
+			<div>
+				<label for="address" name="address">주소 : </label> <input type="text"
+					name="address" />
+			</div>
+			<br /> <input type="submit" value="가입" />
+		</form>
+	</div>
+	<script>
+		let xhr;
+		function startRequest() {
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = callback;
+			const id = document.querySelector("#id");
+			xhr.open('get', 'idCheck.do?id=' + encodeURI(encodeURIComponent(id.value)));
+			xhr.send(null);
+		}
+
+		function callback() {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				document.querySelector("#idCheckView").innerHTML = "<h3>"
+						+ decodeURI(decodeURIComponent(xhr.responseText)) + "</h3>";
+			}else { // readyState 2, 3
+				document.querySelector("#idCheckView").innerHTML = "<img src='img/4wd0Lbmu9.avif'>";
+			}
+		}
+	</script>
+</body>
+</html>
