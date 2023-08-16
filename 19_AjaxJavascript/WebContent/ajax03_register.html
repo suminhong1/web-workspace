@@ -37,17 +37,30 @@
 		function startRequest() {
 			xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = callback;
-			const id = document.querySelector("#id");
-			xhr.open('get', 'idCheck.do?id=' + encodeURI(encodeURIComponent(id.value)));
-			xhr.send(null);
+			//const id = document.querySelector("#id");
+			//xhr.open('get', 'idCheck.do?id=' + encodeURI(encodeURIComponent(id.value)));
+			//xhr.send(null);
+			xhr.open('post', 'idCheck.do');
+			xhr.setRequestHeader("Content-Type",
+					"application/x-www-form-urlencoded;charset=utf-8");
+			xhr.send("id=" + document.querySelector("#id").value);
 		}
 
 		function callback() {
 			if (xhr.readyState === 4 && xhr.status === 200) {
-				document.querySelector("#idCheckView").innerHTML = "<h3>"
-						+ decodeURI(decodeURIComponent(xhr.responseText)) + "</h3>";
-			}else { // readyState 2, 3
-				document.querySelector("#idCheckView").innerHTML = "<img src='img/4wd0Lbmu9.avif'>";
+				const flag = xhr.responseText;
+				const idCheckView = document.querySelector("#idCheckView");
+
+				if (eval(flag) === true) {
+					idCheckView.innerHTML = "<span style = 'color:red;' > ID 사용 불가!! </span>";
+				} else {
+					idCheckView.innerHTML = "<span style = 'color:blue;' > ID 사용 가능!! </span>";
+				}
+
+				//document.querySelector("#idCheckView").innerHTML = "<h3>"
+				//+ decodeURI(decodeURIComponent(xhr.responseText)) + "</h3>";
+				//}else { // readyState 2, 3
+				//document.querySelector("#idCheckView").innerHTML = "<img src='img/4wd0Lbmu9.avif'>";
 			}
 		}
 	</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<style>
+	body {
+		
+	}
+</style>
+</head>
+<body>
+	<div>
+		<h1>회원가입</h1>
+		<form action="/register.do" method="post" name="form">
+			<div>
+				<label for="id" name="id">아이디 : </label> <input type="text"
+					name="id" />
+					<input type="button" value="중복체크" onclick="startRequest()">
+					<span id="idCheckView">
+						<!-- DB에 아이디가 있으면 ID 사용 불가! 없으면 ID 사용 가능!-->
+					</span>
+			</div>
+			<br />
+			<div>
+				<label for="password" name="password">비밀번호 : </label> <input
+					type="password" name="password" />
+			</div>
+			<br />
+			<div>
+				<label for="name" name="name">이름 : </label> <input type="text"
+					name="name" />
+			</div>
+			<br />
+			<div>
+				<label for="address" name="address">주소 : </label> <input type="text"
+					name="address" />
+			</div>
+			<br /> <input type="submit" value="가입" />
+		</form>
+	</div>
+</body>
+</html>

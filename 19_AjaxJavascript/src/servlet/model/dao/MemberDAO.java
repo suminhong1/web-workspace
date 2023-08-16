@@ -105,6 +105,7 @@ public class MemberDAO implements MemberDAOTemplate {
 		PreparedStatement ps = conn.prepareStatement(query);
 
 		ps.setString(1, id);
+		System.out.println("id :: " + id);
 
 		ResultSet rs = ps.executeQuery();
 		MemberVO vo = null;
@@ -115,6 +116,7 @@ public class MemberDAO implements MemberDAOTemplate {
 			vo.setName(rs.getString("name"));
 			vo.setAddress(rs.getString("address"));
 		}
+		System.out.println("vo :: " + vo);
 		closeAll(rs, ps, conn);
 		return vo;
 	}

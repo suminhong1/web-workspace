@@ -16,24 +16,33 @@ public class IdCheckController implements Controller {
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String id = request.getParameter("id");
-		String success = "ID 사용 가능";
-		String fail = "ID 사용 불가";
+//		String success = "ID 사용 가능";
+//		String fail = "ID 사용 불가";
 
 		MemberVO vo = MemberDAO.getInstance().findByIdMember(id);
-		PrintWriter out = response.getWriter();
 		
-		try {
-			Thread.sleep(400);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		boolean flag = false;
+		if(vo!=null) {
+			flag = true;
 		}
+		
+		// 비동기 방식
+		PrintWriter out = response.getWriter();
+		out.println(flag);
+		
+		
+//		try {
+//			Thread.sleep(400);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
-		if (vo != null) {
-			request.setAttribute("vo", vo);
-			out.print(success);
-		} else {
-			out.print(fail);
-		}
-		return new ModelAndView(null);
+//		if (vo != null) {
+//			request.setAttribute("vo", vo);
+//			out.print(success);
+//		} else {
+//			out.print(fail);
+//		}
+		return null;
 	}
 }
