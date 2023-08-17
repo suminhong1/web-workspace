@@ -26,7 +26,6 @@ public class ItemDAO implements ItemDAOTemplate{
 	@Override
 	public Connection getConnection() throws SQLException {
 		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASSWORD);
-		System.out.println("DB Connection");
 		return conn;
 	}
 
@@ -52,10 +51,7 @@ public class ItemDAO implements ItemDAOTemplate{
 		ResultSet rs = ps.executeQuery();
 		ArrayList<Item> list  = new ArrayList<>();
 		while (rs.next()) {
-			Item item = new Item();
-			item.setItemName(rs.getString("name"));
-			item.setPrice(rs.getInt("price"));
-			list.add(item);
+			list.add(new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getInt(6)));
 		}
 		closeAll(rs, ps, conn);
 		return list;
@@ -67,15 +63,13 @@ public class ItemDAO implements ItemDAOTemplate{
 		
 		String query = "SELECT * FROM item WHERE item_id=?";
 		PreparedStatement ps = conn.prepareStatement(query);
+		ps.setInt(1, itemId);
 		
 		ResultSet rs = ps.executeQuery();
-		ps.setInt(1, itemId);
+		
 		Item item = null;
 		if(rs.next()) {
-			item = new Item();
-			item.setItemName(rs.getString("itemId"));
-			item.setPrice(rs.getInt("price"));
-			item.setDescription(rs.getString("descripton"));
+			item = new Item(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getInt(6));
 		}
 		closeAll(rs,ps,conn);
 		return item;
@@ -84,17 +78,18 @@ public class ItemDAO implements ItemDAOTemplate{
 	@Override
 	public boolean updateRecordCount(int itemId) throws SQLException {
 		Connection conn = getConnection();
-		Item item = new Item();
 		
-		String query = "UPDATE item SET COUNT = COUNT + 1 WHERE item_id = '?'";
+		String query = "UPDATE item SET count=count+1 WHERE item_id=?";
 		PreparedStatement ps = conn.prepareStatement(query);
+		ps.setInt(1, itemId);
 		
-		ps.setInt(itemId, item.getCount());
+		int row = ps.executeUpdate();
+		boolean result = false;
+		if(row > 0) result = true;
 		
-		ps.executeUpdate();
 		closeAll(ps, conn);
 		
-		return false;
+		return result;
 	}
 	
 }
