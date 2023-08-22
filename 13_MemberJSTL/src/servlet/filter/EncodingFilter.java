@@ -13,12 +13,12 @@ import javax.servlet.http.HttpFilter;
 
 @WebFilter(value= {"/*"}, initParams=@WebInitParam(name="encoding", value="utf-8"))
 public class EncodingFilter extends HttpFilter implements Filter {
-
+       
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		
 		chain.doFilter(request, response);
 	}
-
 
 }

@@ -15,7 +15,9 @@ public interface MemberDAOTemplate {
 	
 	void registerMember(MemberDTO dto) throws SQLException;
 	MemberDTO login(String id, String password) throws SQLException;
-	MemberDTO findByIdMember(String id)  throws SQLException;
+	MemberDTO findByIdMember(String id) throws SQLException;
 	ArrayList<MemberDTO> showAllMember() throws SQLException;
-	void UpdateMember(MemberDTO dto) throws SQLException;
+	
 }
+
+

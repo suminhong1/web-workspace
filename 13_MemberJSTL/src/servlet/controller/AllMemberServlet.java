@@ -11,25 +11,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import servlet.model.dao.MemberDAO;
+import servlet.model.service.MemberService;
 import servlet.model.vo.MemberDTO;
 
-@WebServlet("/AllMemberServlet")
+@WebServlet("/member/all")
 public class AllMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		MemberDAO dao = new MemberDAO();
 		try {
-			ArrayList<MemberDTO> list = MemberDAO.getInstance().showAllMember();
+			ArrayList<MemberDTO> list = new MemberService().showAllMember();
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/allShow.jsp").forward(request, response);
-		} catch (SQLException e) {
-		}
+			request.getRequestDispatcher("/views/allShow.jsp").forward(request, response);
+		} catch (SQLException e) {}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 

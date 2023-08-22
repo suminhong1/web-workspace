@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studentMapper">
+
+	<!-- resultMap에서 TB_STUDENT, TB_DEPARTMENT id, result - 앞에서 배운 건 여기까지였다면 
+		<association property="department" resultMap="departmentMap"/> showStudent -->
+	<resultMap type="Student" id="studentMap">
+		<id property="studentNo" column="student_no" />
+		<result property="studentName" column="student_name" />
+		<result property="studentAddress" column="student_address" />
+		<association property="department"
+			resultMap="departmentMap" />
+	</resultMap>
+	
+	<resultMap type="Department" id="departmentMap">
+		<id property="departmentNo" column="department_no" />
+		<result property="departmentName" column="department_name" />
+		<result property="category" column="category" />
+	</resultMap>
+
+	<select id="showStudent" resultMap="studentMap" parameterType="String">
+		SELECT student_no, student_name, student_address, department_no, department_name, category
+		FROM tb_student
+		JOIN tb_department USING(department_no)
+		<where>
+			<if test="word!=null">
+				student_no like '%'||#{word}||'%'
+				OR student_name like '%'||#{word}||'%'
+				OR student_address like '%'||#{word}||'%'
+				OR department_name like '%'||#{word}||'%'
+				OR category like '%'||#{word}||'%'
+			</if>
+		</where>
+	</select>
+	</mapper>

@@ -1,23 +1,13 @@
 package servlet.model.vo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import config.ServerInfo;
-import servlet.model.dao.MemberDAOTemplate;
-
 /*
  * VO(Value Object), DTO(Data Transfer Object) : 데이터 전송 및 저장 객체
  * - getter/setter만 가지는 것을 DTO
  * - 실상 구별 없이 사용
- */
+ * */
 
-public class MemberDTO{
-	
+public class MemberDTO {
+
 	private String id;
 	private String password;
 	private String name;
@@ -47,5 +37,4 @@ public class MemberDTO{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 }

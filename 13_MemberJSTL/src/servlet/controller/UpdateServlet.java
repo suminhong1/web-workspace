@@ -16,15 +16,14 @@ import servlet.model.vo.MemberDTO;
 @WebServlet("/UpdateServlet")
 public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 폼값 받는다.
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
-
+		
 		// 2. 객체 생성
 		MemberDTO dto = new MemberDTO();
 		dto.setId(id);
@@ -32,23 +31,24 @@ public class UpdateServlet extends HttpServlet {
 		dto.setName(name);
 		dto.setAddress(address);
 		
-		// 3. DAO
 		try {
-			MemberDAO.getInstance().UpdateMember(dto);
+			// 3. DAO
+			MemberDAO.getInstance().updateMember(dto);
 			
-		// 4. 데이터 바인딩 - session
-		HttpSession session = request.getSession();
-		if(session.getAttribute("dto")!=null) {
-			session.setAttribute("dto", dto);
-		}
-		// 5. 네비게이션
-		request.getRequestDispatcher("views/update_result.jsp").forward(request, response);
-		} catch (SQLException e) {
-		}
+			// 4. 데이터 바인딩 - session
+			HttpSession session = request.getSession();
+			if(session.getAttribute("dto")!=null) {
+				session.setAttribute("dto", dto);
+			}
+			
+			// 5. 네비게이션
+			request.getRequestDispatcher("views/update_result.jsp").forward(request, response);
+			
+		} catch (SQLException e) {}
+		
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 

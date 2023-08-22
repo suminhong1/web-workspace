@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
 			session.setAttribute("dto", dto);
 
 			// 5. 네비게이션
-			response.sendRedirect("AllMemberServlet");
+			response.sendRedirect("/member/all");
 
 		} catch (SQLException e) {
 

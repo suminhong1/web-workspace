@@ -15,6 +15,8 @@ import servlet.model.vo.MemberDTO;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 폼 값 받는다.
 		String id = request.getParameter("id");
@@ -37,6 +39,5 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 
 }

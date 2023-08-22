@@ -5,5 +5,4 @@ public interface ServerInfo {
 	String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	String USER = "sample";
 	String PASSWORD = "SAMPLE";
-	
 }
