@@ -10,128 +10,60 @@ import java.util.ArrayList;
 import config.ServerInfo;
 import servlet.model.vo.MemberDTO;
 
-public class MemberDAO implements MemberDAOTemplate{
-	
-	private static MemberDAO dao =  new MemberDAO();
-	private MemberDAO() {
+public class MemberDAO implements MemberDAOTemplate {
+	private static MemberDAO dao = new MemberDAO();
+	private MemberDAO()	{
 		try {
 			Class.forName(ServerInfo.DRIVER_NAME);
-		} catch (ClassNotFoundException e) {}
+		} catch (ClassNotFoundException e) {
+		}
+		
 	}
 	public static MemberDAO getInstance() {
 		return dao;
 	}
+
 	@Override
 	public Connection getConnection() throws SQLException {
-		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASSWORD);
-		return conn;
+	
+		return null;
 	}
 
 	@Override
 	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
-		ps.close();
-		conn.close();
 	}
 
 	@Override
 	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
-		rs.close();
-		closeAll(ps, conn);
 	}
 
 	@Override
 	public void registerMember(MemberDTO dto) throws SQLException {
-		Connection conn = getConnection();
-		
-		String query = "INSERT INTO member(id, password, name, address) VALUES(?,?,?,?)";
-		PreparedStatement ps = conn.prepareStatement(query);
-		
-		ps.setString(1, dto.getId());
-		ps.setString(2, dto.getPassword());
-		ps.setString(3, dto.getName());
-		ps.setString(4, dto.getAddress());
-		
-		ps.executeUpdate();
-		
-		closeAll(ps, conn);
+	Connection conn = getConnection();
+	
+	String query = "INSERT INTO member(id, password, name, address)";
+	PreparedStatement ps = conn.prepareStatement(query);
+	
+	ps.S
 	}
 
 	@Override
 	public MemberDTO login(String id, String password) throws SQLException {
-		Connection conn = getConnection();
 		
-		String query = "SELECT * FROM member WHERE id=? AND password=?";
-		PreparedStatement ps = conn.prepareStatement(query);
-		ps.setString(1, id);
-		ps.setString(2, password);
-		
-		ResultSet rs = ps.executeQuery();
-		MemberDTO dto = null;
-		if(rs.next()) {
-			dto = new MemberDTO();
-			dto.setId(rs.getString("id"));
-			dto.setPassword(rs.getString("password"));
-			dto.setName(rs.getString("name"));
-			dto.setAddress(rs.getString("address"));
-		}
-		closeAll(rs, ps, conn);
-		return dto;
+		return null;
 	}
 
 	@Override
-	public MemberDTO findByIdMeber(String id) throws SQLException {
-		Connection conn = getConnection();
+	public MemberDTO findByIdMember(String id) throws SQLException {
 		
-		String query = "SELECT * FROM member WHERE id=?";
-		PreparedStatement ps = conn.prepareStatement(query);
-		
-		ps.setString(1, id);
-		
-		ResultSet rs = ps.executeQuery();
-		MemberDTO dto = null;
-		if(rs.next()) {
-			dto = new MemberDTO();
-			dto.setId(rs.getString("id"));
-			dto.setPassword(rs.getString("password"));
-			dto.setName(rs.getString("name"));
-			dto.setAddress(rs.getString("address"));
-		}
-		closeAll(rs, ps, conn);
-		return dto;
+		return null;
 	}
 
 	@Override
 	public ArrayList<MemberDTO> showAllMember() throws SQLException {
-		Connection conn = getConnection();
 		
-		String query = "SELECT * FROM member";
-		PreparedStatement ps = conn.prepareStatement(query);
-		
-		ResultSet rs = ps.executeQuery();
-		ArrayList<MemberDTO> list = new ArrayList<>();
-		while(rs.next()) {
-			MemberDTO dto = new MemberDTO();
-			dto.setId(rs.getString("id"));
-			dto.setPassword(rs.getString("password"));
-			dto.setName(rs.getString("name"));
-			dto.setAddress(rs.getString("address"));
-			list.add(dto);
-		}
-		closeAll(rs, ps, conn);
-		return list;
+		return null;
 	}
 
-	public void updateMember(MemberDTO dto) throws SQLException {
-		Connection conn = getConnection();
-		
-		String query = "UPDATE member SET password=?, name=?, address=? WHERE id=?";
-		PreparedStatement ps = conn.prepareStatement(query);
-		ps.setString(1, dto.getPassword());
-		ps.setString(2, dto.getName());
-		ps.setString(3, dto.getAddress());
-		ps.setString(4, dto.getId());
-		
-		ps.executeUpdate();
-		closeAll(ps, conn);
-	}
+
 }

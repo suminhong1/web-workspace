@@ -13,5 +13,4 @@ public class MemberService {
 	public ArrayList<MemberDTO> showAllMember() throws SQLException {
 		return repo.showAllMember();
 	}
-			
 }

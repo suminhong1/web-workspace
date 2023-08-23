@@ -11,7 +11,7 @@
 	
 	<form action="/UpdateServlet" method="post">
 		ID : <input type="text" name="id" value="${dto.id}" readonly><br>
-		PASSWORD : <input type="text" name="password" value="${dto.password}"><br>
+		PASSWORD : <input type="password" name="password" value="${dto.password}"><br>
 		NAME : <input type="text" name="name" value="${dto.name}"><br>
 		ADDRESS : <input type="text" name="address" value="${dto.address}"><br>
 		<input type="submit" value="정보수정">

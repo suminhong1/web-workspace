@@ -11,7 +11,7 @@ import config.ServerInfo;
 import servlet.model.vo.MemberDTO;
 
 public class MemberRepository implements MemberDAOTemplate {
-
+	
 	@Override
 	public Connection getConnection() throws SQLException {
 		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASSWORD);
@@ -34,7 +34,7 @@ public class MemberRepository implements MemberDAOTemplate {
 	public void registerMember(MemberDTO dto) throws SQLException {
 		Connection conn = getConnection();
 		
-		String query = "INSERT INTO member(id, password, name, address) VALUES(?,?,?,?)";
+		String query = "INSERT INTO member(id, password, name, address) VALUES(?, ?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(query);
 		
 		ps.setString(1, dto.getId());
@@ -45,6 +45,7 @@ public class MemberRepository implements MemberDAOTemplate {
 		ps.executeUpdate();
 		
 		closeAll(ps, conn);
+		
 	}
 
 	@Override
@@ -53,6 +54,7 @@ public class MemberRepository implements MemberDAOTemplate {
 		
 		String query = "SELECT * FROM member WHERE id=? AND password=?";
 		PreparedStatement ps = conn.prepareStatement(query);
+		
 		ps.setString(1, id);
 		ps.setString(2, password);
 		
@@ -70,7 +72,7 @@ public class MemberRepository implements MemberDAOTemplate {
 	}
 
 	@Override
-	public MemberDTO findByIdMeber(String id) throws SQLException {
+	public MemberDTO findByIdMember(String id) throws SQLException {
 		Connection conn = getConnection();
 		
 		String query = "SELECT * FROM member WHERE id=?";
@@ -111,4 +113,19 @@ public class MemberRepository implements MemberDAOTemplate {
 		closeAll(rs, ps, conn);
 		return list;
 	}
+	
+	public void updateMember(MemberDTO dto) throws SQLException {
+		Connection conn = getConnection();
+		
+		String query = "UPDATE member SET password=?, name=?, address=? WHERE id=?";
+		PreparedStatement ps = conn.prepareStatement(query);
+		ps.setString(1, dto.getPassword());
+		ps.setString(2, dto.getName());
+		ps.setString(3, dto.getAddress());
+		ps.setString(4, dto.getId());
+		
+		ps.executeUpdate();
+		closeAll(ps, conn);
+	}
+
 }

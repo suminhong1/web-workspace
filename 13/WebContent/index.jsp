@@ -1,7 +1,7 @@
 <%@page import="servlet.model.vo.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,7 @@
 				<li><a href="views/search.html">회원검색</a></li>
 				<li><a href="/member/all">전체회원보기</a></li>
 				<li><a href="views/logout.jsp">로그아웃</a></li>
-				<li><a href="views/update.jsp">회원정보수정</a></li>
+				<li><a href="views/update.jsp">회원 정보 수정</a></li>
 			</c:otherwise>
 		</c:choose>
 	</ul>
