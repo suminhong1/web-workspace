@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="mybatis">
+	<insert id = "insertMember" parameterType="member">
+		INSERT INTO MEMBER VALUSE (SEQ_MEMBER.NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userAddr}, DEFAULT);
+	</insert>
+</mapper>
