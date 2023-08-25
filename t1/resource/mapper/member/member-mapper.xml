@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<mapper namespace="mybatis">
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO MEMBER VALUES(SEQ_MEMBER_NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userAddr}, DEFAULT);
+	</insert>
+</mapper>

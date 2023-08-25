@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<mapper namespace="mybatis">
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO VALUES (SEQ_MEMBER.NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userAddr}, DEFAULT);
+	</insert>
+	<select id="findByIdMember" parameterType="list" resultType="Member">
+		SELECT * FROM MEMBER WHRER id IN 
+		<foreach colleciton="list" item="item" open="(" close=")" separtor=",">
+			#{item}
+		</foreach>
+	</select>
+</mapper>
+
