@@ -18,7 +18,7 @@
 
 	<!-- * DML문일 경우 
 		<insert | update | delete id="식별자" parameterType="전달받을 자바타입(풀클래스명) | 별칭"> </insert | update | delete>
-		* SELECT문일 경우 <select id="식별자" [parameterType="전달받을 자바타임(풀클래스명) | 별칭"] 
+		* SELECT문일 경우 <select id="식별자" [parameterType="전달받을 자바타입(풀클래스명) | 별칭"] 
 		resultType="조회 결과를 반환하고자 하는 자바타입" | resultMap="조회결과를 뽑아서 매핑할 resultMap의 id"> 
 		</select> ? 대신에 해당 sql문에 전달된 객체로부터 값을 꺼낼 때 #{필드명 또는 변수명 또는 키값} 이용 -->
 
